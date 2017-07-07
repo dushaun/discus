@@ -11,11 +11,15 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Sign in user
-     * 
+     *
      * @param User $user
+     * @return $this
      */
-    public function signIn(User $user)
+    public function signIn($user = null)
     {
+        $user = $user ?: create('App\User');
         $this->be($user);
+
+        return $this;
     }
 }
