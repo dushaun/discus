@@ -19,11 +19,16 @@ class ThreadsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Channel $channel
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Channel $channel)
     {
-        $threads = Thread::latest()->get();
+        if ($channel->exists) {
+            $threads = $channel->threads()->latest()->get();
+        } else {
+            $threads = Thread::latest()->get();
+        }
         return view('threads.index', compact('threads'));
     }
 
@@ -64,11 +69,12 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Channel $channel
+     * @param $channelId
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
+     * @internal param Channel $channel
      */
-    public function show($channel, Thread $thread)
+    public function show($channelId, Thread $thread)
     {
         return view('threads.show', compact('thread'));
     }
