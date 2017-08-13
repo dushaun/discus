@@ -57,4 +57,16 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     }
+
+    /**
+     * Apply filters to query
+     *
+     * @param $query
+     * @param $filters
+     * @return mixed
+     */
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
