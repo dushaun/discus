@@ -2,11 +2,15 @@
 
 namespace App;
 
+use App\Traits\Favouritable;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
+    use Favouritable;
+
     protected $guarded = [];
+    protected $with = ['owner', 'favourites'];
 
     /**
      * A reply belongs to a user
@@ -16,24 +20,5 @@ class Reply extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * A reply can have many favourites
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function favourites()
-    {
-        return $this->morphMany(Favourite::class, 'favouritable');
-    }
-
-    public function favourite()
-    {
-        $attribute = ['user_id' => auth()->id()];
-
-        if (! $this->favourites()->where($attribute)->exists()) {
-            return $this->favourites()->create($attribute);
-        }
     }
 }

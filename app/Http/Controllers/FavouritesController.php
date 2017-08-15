@@ -20,10 +20,12 @@ class FavouritesController extends Controller
      * Store a new favourite
      *
      * @param Reply $reply
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Reply $reply)
     {
-        return $reply->favourite();
+        $reply->favourite();
+
+        return back();
     }
 }
