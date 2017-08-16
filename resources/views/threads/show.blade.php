@@ -6,8 +6,19 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                        {{ $thread->title }}
+                        <div class="level">
+                            <span class="flex">
+                                <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
+                                {{ $thread->title }}
+                            </span>
+
+                            <form action="{{ $thread->path() }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+
+                                <button type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="panel-body">
