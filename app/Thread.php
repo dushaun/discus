@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Traits\ActivityTracker;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+    use ActivityTracker;
+
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
 
     /**
-     *
+     * Thread Boot method
      */
     protected static function boot()
     {

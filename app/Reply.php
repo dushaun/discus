@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\ActivityTracker;
 use App\Traits\Favouritable;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use Favouritable;
+    use Favouritable, ActivityTracker;
 
     protected $guarded = [];
     protected $with = ['owner', 'favourites'];
