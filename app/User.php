@@ -38,6 +38,16 @@ class User extends Authenticatable
     }
 
     /**
+     * A user has many tracked activities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    /**
      * Route model binding expects a name
      *
      * @return string
