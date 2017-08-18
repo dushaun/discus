@@ -9,7 +9,7 @@
                         {{ $profileUser->name }}
                     </h1>
                 </div>
-                
+
                 @foreach($activities as $date => $activity)
                     <h3 class="page-header">{{ $date }}</h3>
 
