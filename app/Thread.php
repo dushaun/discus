@@ -24,7 +24,8 @@ class Thread extends Model
         });
 
         static::deleting(function ($thread) {
-            Reply::where('thread_id', $thread->id)->delete();
+            $ids = $thread->replies()->pluck('id');
+            Reply::destroy($ids);
         });
     }
 
