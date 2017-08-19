@@ -20,6 +20,7 @@ class ThreadsController extends Controller
 
     /**
      * Display a listing of the resource.
+     * TODO: Add pagination to threads
      *
      * @param Channel $channel
      * @param ThreadFilters $filters
@@ -67,7 +68,8 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
-        return redirect($thread->path());
+        return redirect($thread->path())
+            ->with('flash', 'Your thread has been published');
     }
 
     /**
