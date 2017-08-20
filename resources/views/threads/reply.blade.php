@@ -1,17 +1,17 @@
-<div id="reply-{{$reply->id}}" class="panel panel-default">
-    <div class="panel-heading">
+<div id="reply-{{$reply->id}}" class="card mb-3">
+    <div class="card-header">
         <div class="level">
-            <h5 class="flex">
+            <div class="flex">
                 <a href="{{ route('profile', $reply->owner) }}">
                     {{ $reply->owner->name }}
                 </a> said {{ $reply->created_at->diffForHumans() }}
-            </h5>
+            </div>
 
             <div>
                 <form method="post" action="/replies/{{ $reply->id }}/likes">
                     {{ csrf_field() }}
 
-                    <button type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
+                    <button class="btn btn-link btn-sm" type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         {{ $reply->likes_count }}
                     </button>
@@ -24,8 +24,8 @@
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
 
-                        <button type="submit">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        <button class="btn btn-outline-danger btn-sm" type="submit">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                     </form>
                 </div>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="panel-body">
+    <div class="card-body">
         {{ $reply->body }}
     </div>
 </div>

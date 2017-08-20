@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card mb-4">
+                    <div class="card-header">
                         <div class="level">
                             <span class="flex">
                                 <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
@@ -17,13 +17,15 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
                                 </form>
                             @endcan
                         </div>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
                         {{ $thread->body }}
                     </div>
                 </div>
@@ -35,13 +37,13 @@
                 {{ $replies->links() }}
 
                 @if(auth()->check())
-                    <form method="post" action="{{ $thread->path() . '/replies' }}">
+                    <form method="post" action="{{ $thread->path() . '/replies' }}" class="mb-3">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <textarea name="body" id="body" placeholder="Reply here..." class="form-control" rows="4"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-default form-control">Submit</button>
+                            <button type="submit" class="btn btn-outline-primary form-control">Submit</button>
                         </div>
                     </form>
                 @else
@@ -50,9 +52,9 @@
             </div>
 
             <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="mb-0">
                             This thread was published {{ $thread->created_at->diffForHumans() }} by
                             <a href="#">{{ $thread->creator->name }}</a> and currently
                             has {{ $thread->replies_count }} {{ str_plural('comment', $thread->replies_count) }}.

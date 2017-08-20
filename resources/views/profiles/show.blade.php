@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="page-header">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <div class="page-header mb-5">
                     <h1>
                         {{ $profileUser->name }}
                     </h1>
                 </div>
 
                 @foreach($activities as $date => $activity)
-                    <h3 class="page-header">{{ $date }}</h3>
+                    <h3 class="page-header mt-4 mb-4">{{ $date }}</h3>
 
                     @foreach($activity as $record)
                         @if(view()->exists("profiles.activities.{$record->type}"))

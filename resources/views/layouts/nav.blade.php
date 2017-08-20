@@ -1,67 +1,65 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border border-left-0 border-right-0 border-top-0">
     <div class="container">
-        <div class="navbar-header">
+        <!-- Branding Image -->
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}
+        </a>
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-        </div>
+        <!-- Collapsed Hamburger -->
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#app-navbar-collapse" aria-controls="app-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/threads">All Threads</a></li>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="browseDropdown">
+                        Browse
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="browseDropdown">
+                        <a class="dropdown-item" href="/threads">All Threads</a>
                         @if(auth()->check())
-                            <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
+                            <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
                         @endif
-                        <li><a href="/threads?popular=1">Popular Threads</a></li>
-                    </ul>
+                        <a class="dropdown-item" href="/threads?popular=1">Popular Threads</a>
+                    </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="channelsDropdown">
+                        Channels <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="channelsDropdown">
                         @foreach($channels as $channel)
-                            <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                            <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
                         @endforeach
-                    </ul>
+                    </div>
                 </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/threads/create">New Thread</a></li>
-                        </ul>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="actionsDropdown">Actions</a>
+                        <div class="dropdown-menu" aria-labelledby="actionsDropdown">
+                            <a class="dropdown-item" href="/threads/create">New Thread</a>
+                        </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="userDropdown">
+                            {{ Auth::user()->name }}
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('profile', auth()->user()) }}">My Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="{{ route('logout') }}"
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{{ route('profile', auth()->user()) }}">My Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     Logout
@@ -70,8 +68,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </li>
                 @endif
             </ul>

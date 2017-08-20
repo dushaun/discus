@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
                 @forelse($threads as $thread)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card mb-3">
+                        <div class="card-header">
                             <div class="level">
-                                <h4 class="flex">
+                                <div class="flex">
                                     <a href="{{ $thread->path() }}">
                                         {{ $thread->title }}
                                     </a>
-                                </h4>
+                                </div>
 
                                 <a href="{{ $thread->path() }}">
                                     {{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}
@@ -20,13 +20,13 @@
                             </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="card-body">
                                 <div class="body">{{ $thread->body }}</div>
                         </div>
                     </div>
                 @empty
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="card">
+                        <div class="card-body">
                             <p>There are not relevant results at this time.</p>
                         </div>
                     </div>
