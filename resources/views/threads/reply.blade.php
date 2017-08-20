@@ -8,12 +8,12 @@
             </h5>
 
             <div>
-                <form method="post" action="/replies/{{ $reply->id }}/favourites">
+                <form method="post" action="/replies/{{ $reply->id }}/likes">
                     {{ csrf_field() }}
 
-                    <button type="submit" {{ $reply->isFavourited() ? 'disabled' : '' }}>
+                    <button type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
                         <i class="fa fa-heart" aria-hidden="true"></i>
-                        {{ $reply->favourites_count }}
+                        {{ $reply->likes_count }}
                     </button>
                 </form>
             </div>

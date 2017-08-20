@@ -3,15 +3,15 @@
 namespace App;
 
 use App\Traits\ActivityTracker;
-use App\Traits\Favouritable;
+use App\Traits\Likable;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use Favouritable, ActivityTracker;
+    use Likable, ActivityTracker;
 
     protected $guarded = [];
-    protected $with = ['owner', 'favourites'];
+    protected $with = ['owner', 'likes'];
 
     /**
      * A reply belongs to a user

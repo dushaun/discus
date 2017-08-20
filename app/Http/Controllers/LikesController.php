@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Favourite;
+use App\Like;
 use App\Reply;
 use Illuminate\Http\Request;
 
-class FavouritesController extends Controller
+class LikesController extends Controller
 {
     /**
-     * FavouritesController constructor.
+     * LikesController constructor.
      */
     public function __construct()
     {
@@ -17,14 +17,14 @@ class FavouritesController extends Controller
     }
 
     /**
-     * Store a new favourite
+     * Store a new like
      *
      * @param Reply $reply
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Reply $reply)
     {
-        $reply->favourite();
+        $reply->like();
 
         return back();
     }

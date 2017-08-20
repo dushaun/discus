@@ -5,7 +5,7 @@ namespace App;
 use App\Traits\ActivityTracker;
 use Illuminate\Database\Eloquent\Model;
 
-class Favourite extends Model
+class Like extends Model
 {
     use ActivityTracker;
 
@@ -14,7 +14,7 @@ class Favourite extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function favouritable()
+    public function likable()
     {
         return $this->morphTo();
     }
