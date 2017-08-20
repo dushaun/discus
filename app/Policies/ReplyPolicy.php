@@ -11,6 +11,18 @@ class ReplyPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether a user can update their reply
+     *
+     * @param User $user
+     * @param Reply $reply
+     * @return bool
+     */
+    public function update(User $user, Reply $reply)
+    {
+        return $reply->user_id == $user->id;
+    }
+
+    /**
      * Determine whether a user can delete their reply
      *
      * @param User $user

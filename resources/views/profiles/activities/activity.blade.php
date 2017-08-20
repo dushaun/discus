@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <div class="card-header">
-        <div class="level">
-            <span class="flex">
+        <div class="d-flex align-items-center">
+            <span class="mr-auto">
                 {{ $heading }}
             </span>
 

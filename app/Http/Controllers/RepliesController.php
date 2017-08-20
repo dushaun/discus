@@ -37,6 +37,13 @@ class RepliesController extends Controller
         return back()->with('flash', 'Your reply has been left');
     }
 
+    public function update(Reply $reply)
+    {
+        $this->authorize('update', $reply);
+
+        $reply->update(['body' => request('body')]);
+    }
+
     /**
      * Delete selected reply
      * TODO: Add SoftDeletes to replies

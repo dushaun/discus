@@ -7,8 +7,8 @@
                 @forelse($threads as $thread)
                     <div class="card mb-3">
                         <div class="card-header">
-                            <div class="level">
-                                <div class="flex">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
                                     <a href="{{ $thread->path() }}">
                                         {{ $thread->title }}
                                     </a>
