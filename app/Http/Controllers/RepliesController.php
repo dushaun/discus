@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -34,5 +35,21 @@ class RepliesController extends Controller
         ]);
 
         return back()->with('flash', 'Your reply has been left');
+    }
+
+    /**
+     * Delete selected reply
+     * TODO: Add SoftDeletes to replies
+     *
+     * @param Reply $reply
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Reply $reply)
+    {
+        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return back()->with('flash', 'Your reply was deleted');
     }
 }

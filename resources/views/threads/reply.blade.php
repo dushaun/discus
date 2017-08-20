@@ -17,6 +17,19 @@
                     </button>
                 </form>
             </div>
+
+            @can('delete', $reply)
+                <div>
+                    <form method="post" action="/replies/{{ $reply->id }}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+
+                        <button type="submit">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            @endcan
         </div>
     </div>
 
