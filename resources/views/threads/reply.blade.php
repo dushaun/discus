@@ -12,7 +12,7 @@
                     <form method="post" action="/replies/{{ $reply->id }}/likes">
                         {{ csrf_field() }}
 
-                        <button class="btn btn-outline-primary btn-sm mr-2 border-0" type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
+                        <button class="btn btn-outline-primary btn-sm border-0" type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             {{ $reply->likes_count }}
                         </button>
@@ -21,18 +21,12 @@
 
                 @can('update', $reply)
                     <div class="d-inline-flex">
-                        <button class="btn btn-outline-success btn-sm mr-2" @click="editing = true">
+                        <button class="btn btn-outline-success btn-sm mr-2 ml-2" @click="editing = true">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
-
-                        <form method="post" action="/replies/{{ $reply->id }}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-
-                            <button class="btn btn-danger btn-sm" type="submit">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </form>
+                        <button class="btn btn-danger btn-sm" @click="destroy">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </div>
                 @endcan
             </div>

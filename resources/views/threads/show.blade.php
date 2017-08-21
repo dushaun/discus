@@ -17,7 +17,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button class="btn btn-outline-danger btn-sm" type="submit">
+                                    <button class="btn btn-danger btn-sm" type="submit">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </form>
