@@ -1,6 +1,8 @@
 <script>
+    import Like from './Like.vue';
     export default {
         props: ['attributes'],
+        components: { Like },
         data() {
             return {
                 editing: false,

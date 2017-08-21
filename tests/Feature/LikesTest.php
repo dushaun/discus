@@ -30,6 +30,19 @@ class LikesTest extends TestCase
     }
 
     /** @test */
+    public function an_authenticated_user_can_unlike_any_reply()
+    {
+        $this->signIn();
+
+        $reply = create('App\Reply');
+
+        $reply->like();
+
+        $this->delete('replies/' . $reply->id . '/likes');
+        $this->assertCount(0, $reply->likes);
+    }
+
+    /** @test */
     public function an_authenticated_user_may_only_like_a_reply_once()
     {
         $this->signIn();

@@ -28,4 +28,9 @@ class LikesController extends Controller
 
         return back();
     }
+
+    public function destroy(Reply $reply)
+    {
+        $reply->unlike();
+    }
 }

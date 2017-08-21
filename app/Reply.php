@@ -12,6 +12,7 @@ class Reply extends Model
 
     protected $guarded = [];
     protected $with = ['owner', 'likes'];
+    protected $appends = ['isLiked'];
 
     /**
      * A reply belongs to a user

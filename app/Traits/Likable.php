@@ -32,6 +32,16 @@ trait Likable
     }
 
     /**
+     * All user to unlike a reply
+     */
+    public function unlike()
+    {
+        $attribute = ['user_id' => auth()->id()];
+
+        $this->likes()->where($attribute)->delete();
+    }
+
+    /**
      * Check if a user has liked a reply
      *
      * @return bool
@@ -39,6 +49,16 @@ trait Likable
     public function isLiked()
     {
         return !!$this->likes->where('user_id', auth()->id())->count();
+    }
+
+    /**
+     * Return user's liked status on reply
+     *
+     * @return bool
+     */
+    public function getIsLikedAttribute()
+    {
+        return $this->isLiked();
     }
 
     /**

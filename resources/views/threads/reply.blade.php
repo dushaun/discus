@@ -9,14 +9,7 @@
                 </div>
 
                 <div>
-                    <form method="post" action="/replies/{{ $reply->id }}/likes">
-                        {{ csrf_field() }}
-
-                        <button class="btn btn-outline-primary btn-sm border-0" type="submit" {{ $reply->isLiked() ? 'disabled' : '' }}>
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            {{ $reply->likes_count }}
-                        </button>
-                    </form>
+                    <like :reply="{{ $reply }}"></like>
                 </div>
 
                 @can('update', $reply)
