@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border border-left-0 border-right-0 border-top-0">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4 border border-left-0 border-right-0 border-top-0">
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">

@@ -14,16 +14,11 @@
                     </div>
                 @endif
 
-                @can('update', $reply)
-                    <div class="d-inline-flex">
-                        <button class="btn btn-outline-success btn-sm mr-2 ml-2" @click="editing = true">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" @click="destroy">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                @endcan
+                <div class="ml-1">
+                    <button :class="classes" @click="optionsToggle">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -38,5 +33,17 @@
             </div>
             <div v-else v-text="body"></div>
         </div>
+
+        <div class="card-footer" v-if="options">
+            @can('update', $reply)
+            <button class="btn btn-success btn-sm mr-2" @click="editing = true">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm" @click="destroy">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+            @endcan
+        </div>
+
     </div>
 </reply>

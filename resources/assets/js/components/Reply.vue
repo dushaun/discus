@@ -6,8 +6,14 @@
         data() {
             return {
                 editing: false,
-                body: this.attributes.body
+                body: this.attributes.body,
+                options: false
             };
+        },
+        computed: {
+            classes() {
+                return ['btn btn-sm border-0 ', this.options ? 'btn-secondary' : 'btn-outline-secondary']
+            }
         },
         methods: {
             update() {
@@ -26,6 +32,10 @@
                 $(this.$el).fadeOut(300, () => {
                     flash('Your reply has been deleted');
                 });
+            },
+
+            optionsToggle() {
+                this.options = ! this.options
             }
         }
     }

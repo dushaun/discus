@@ -43,7 +43,7 @@
                             <textarea name="body" id="body" placeholder="Reply here..." class="form-control" rows="4"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-outline-primary form-control">Submit</button>
+                            <button type="submit" class="btn btn-primary form-control">Submit</button>
                         </div>
                     </form>
                 @else

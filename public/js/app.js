@@ -45944,10 +45944,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             editing: false,
-            body: this.attributes.body
+            body: this.attributes.body,
+            options: false
         };
     },
 
+    computed: {
+        classes: function classes() {
+            return ['btn btn-sm border-0 ', this.options ? 'btn-secondary' : 'btn-outline-secondary'];
+        }
+    },
     methods: {
         update: function update() {
             axios.patch('/replies/' + this.attributes.id, {
@@ -45964,6 +45970,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $(this.$el).fadeOut(300, function () {
                 flash('Your reply has been deleted');
             });
+        },
+        optionsToggle: function optionsToggle() {
+            this.options = !this.options;
         }
     }
 });
