@@ -8,9 +8,11 @@
                     </a> said {{ $reply->created_at->diffForHumans() }}
                 </div>
 
-                <div>
-                    <like :reply="{{ $reply }}"></like>
-                </div>
+                @if(Auth::check())
+                    <div>
+                        <like :reply="{{ $reply }}"></like>
+                    </div>
+                @endif
 
                 @can('update', $reply)
                     <div class="d-inline-flex">

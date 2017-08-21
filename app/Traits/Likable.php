@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Likable
 {
+    protected static function bootLikable()
+    {
+        static::deleting(function ($model) {
+            $ids = $model->likes()->pluck('id')->toArray();
+            Like::destroy($ids);
+        });
+    }
+
     /**
      * A reply can have many likes
      *
@@ -38,7 +46,8 @@ trait Likable
     {
         $attribute = ['user_id' => auth()->id()];
 
-        $this->likes()->where($attribute)->delete();
+        $id = $this->likes()->where($attribute)->pluck('id')->toArray();
+        Like::destroy($id);
     }
 
     /**
