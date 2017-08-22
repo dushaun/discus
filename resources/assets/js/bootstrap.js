@@ -13,6 +13,12 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+Vue.prototype.authorise = function (handler) {
+    let user = window.App.user;
+
+    return user ? handler(user) : false;
+};
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
