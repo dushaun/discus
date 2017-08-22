@@ -10,7 +10,7 @@
         props: ['reply'],
         data() {
             return {
-                count: this.reply.likes_count,
+                count: this.reply.likesCount,
                 isLiked: this.reply.isLiked
             };
         },

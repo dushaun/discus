@@ -31,23 +31,11 @@
                         </div>
                     </div>
 
-                    <replies :data="{{ $thread->replies }}" @removed="repliesCount--"></replies>
+                    <replies :data="{{ $thread->replies }}"
+                        @added="repliesCount++"
+                        @removed="repliesCount--"></replies>
 
                     {{--{{ $replies->links() }}--}}
-
-                    @if(auth()->check())
-                        <form method="post" action="{{ $thread->path() . '/replies' }}" class="mb-3">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <textarea name="body" id="body" placeholder="Reply here..." class="form-control" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary form-control">Submit</button>
-                            </div>
-                        </form>
-                    @else
-                        <p class="text-center">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to get involved with this conversation.</p>
-                    @endif
                 </div>
 
                 <div class="col-md-4">

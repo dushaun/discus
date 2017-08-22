@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-sm btn-link" @click="editing = false">Cancel</button>
+                    <button class="btn btn-sm btn-link" @click="cancel">Cancel</button>
                     <button class="btn btn-sm btn-primary" @click="update">Update</button>
                 </div>
             </div>
@@ -58,9 +58,13 @@
             return {
                 editing: false,
                 id: this.data.id,
+                original: '',
                 body: this.data.body,
                 options: false
             };
+        },
+        created() {
+            this.original = this.data.body;
         },
         computed: {
             signedIn() {
@@ -74,12 +78,17 @@
             }
         },
         methods: {
+            cancel() {
+                this.editing = false;
+                this.body = this.original;
+            },
             update() {
                 axios.patch('/replies/' + this.data.id, {
                     body: this.body
                 });
 
                 this.editing = false;
+                this.original = this.body;
 
                 flash('Your reply was updated');
             },
