@@ -20,10 +20,10 @@
 
 <script>
     export default {
-        props: ['endpoint'],
         data() {
             return {
-                body: ''
+                body: '',
+                endpoint: location.pathname + '/replies'
             };
         },
         computed: {

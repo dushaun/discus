@@ -5,7 +5,7 @@
                 <div class="mr-auto">
                     <a :href="'/profiles/' + data.owner.name"
                         v-text="data.owner.name">
-                    </a> said {{ data.created_at }}
+                    </a> said <span v-text="ago"></span>
                 </div>
 
                 <div v-if="signedIn">
@@ -35,8 +35,7 @@
         </div>
 
         <div class="card-footer" v-if="options">
-            <!--@can('update', $reply)-->
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end" v-if="canUpdate">
                 <button class="btn btn-outline-danger btn-sm border-0 mr-2" @click="destroy">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
@@ -44,7 +43,6 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
             </div>
-            <!--@endcan-->
         </div>
     </div>
 </template>
@@ -67,6 +65,9 @@
             this.original = this.data.body;
         },
         computed: {
+            ago() {
+                return window.moment(this.data.created_at).fromNow();
+            },
             signedIn() {
                 return window.App.signedIn
             },
