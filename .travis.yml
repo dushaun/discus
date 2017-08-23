@@ -15,7 +15,9 @@ script:
   - vendor/bin/phpunit
 
 notifications:
-  slack: mighlestone:qwHMxIEE8XtAxnTYRGh82Y4F
+  slack:
+    rooms:
+      - mighlestone:qwHMxIEE8XtAxnTYRGh82Y4F
     on_success: change
     on_failure: always
 
