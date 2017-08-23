@@ -15,6 +15,7 @@ script:
   - vendor/bin/phpunit
 
 notifications:
+  email: false
   slack:
     rooms:
       - mighlestone:qwHMxIEE8XtAxnTYRGh82Y4F
