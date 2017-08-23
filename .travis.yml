@@ -14,4 +14,10 @@ before_script:
 script:
   - vendor/bin/phpunit
 
+notifications:
+  email: false
+  slack: mighlestone:qwHMxIEE8XtAxnTYRGh82Y4F
+    on_success: change
+    on_failure: always
+
 dist: trusty
