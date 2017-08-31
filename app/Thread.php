@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Notifications\ThreadWasUpdated;
 use App\Traits\ActivityTracker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
 
 class Thread extends Model
 {
@@ -76,7 +78,13 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
-        return $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        $this->subscriptions->filter(function ($sub) use ($reply) {
+            return $sub->user_id != $reply->user_id;
+        })->each->notify($reply);
+
+        return $reply;
     }
 
     /**
@@ -93,14 +101,17 @@ class Thread extends Model
 
     /**
      * A user can subscribe to a thread
-     * 
+     *
      * @param null $userId
+     * @return $this
      */
     public function subscribe($userId = null)
     {
         $this->subscriptions()->create([
             'user_id' => $userId ?: auth()->id()
         ]);
+
+        return $this;
     }
 
     /**
