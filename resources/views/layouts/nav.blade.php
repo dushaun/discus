@@ -45,6 +45,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                 @else
+                    <user-notifications></user-notifications>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="actionsDropdown">Actions</a>
                         <div class="dropdown-menu" aria-labelledby="actionsDropdown">
