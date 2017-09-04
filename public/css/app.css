@@ -6049,19 +6049,26 @@ a.bg-dark:hover {
   background-color: transparent !important;
 }
 
-.border {
+.border,
+.dropdown-menu.notifications > .notifications-title,
+.dropdown-menu.notifications > .notifications-container > .notification {
   border: 1px solid #e9ecef !important;
 }
 
-.border-0 {
+.border-0,
+.dropdown-menu.notifications > .notifications-container > .notification:last-child {
   border: 0 !important;
 }
 
-.border-top-0 {
+.border-top-0,
+.dropdown-menu.notifications > .notifications-title,
+.dropdown-menu.notifications > .notifications-container > .notification {
   border-top: 0 !important;
 }
 
-.border-right-0 {
+.border-right-0,
+.dropdown-menu.notifications > .notifications-title,
+.dropdown-menu.notifications > .notifications-container > .notification {
   border-right: 0 !important;
 }
 
@@ -6069,7 +6076,9 @@ a.bg-dark:hover {
   border-bottom: 0 !important;
 }
 
-.border-left-0 {
+.border-left-0,
+.dropdown-menu.notifications > .notifications-title,
+.dropdown-menu.notifications > .notifications-container > .notification {
   border-left: 0 !important;
 }
 
@@ -6159,7 +6168,8 @@ a.bg-dark:hover {
   display: inline-block !important;
 }
 
-.d-block {
+.d-block,
+.dropdown-menu.notifications > .notifications-container > .notification {
   display: block !important;
 }
 
@@ -7570,6 +7580,7 @@ a.bg-dark:hover {
 }
 
 .pb-0,
+.dropdown-menu.notifications,
 .py-0 {
   padding-bottom: 0 !important;
 }
@@ -7608,6 +7619,8 @@ a.bg-dark:hover {
 }
 
 .pt-2,
+.dropdown-menu.notifications > .notifications-container,
+.dropdown-menu.notifications > .notifications-container > .notification:not(:first-child),
 .py-2 {
   padding-top: 0.5rem !important;
 }
@@ -7618,6 +7631,7 @@ a.bg-dark:hover {
 }
 
 .pb-2,
+.dropdown-menu.notifications > .notifications-title,
 .py-2 {
   padding-bottom: 0.5rem !important;
 }
@@ -7661,7 +7675,8 @@ a.bg-dark:hover {
 }
 
 .pr-4,
-.px-4 {
+.px-4,
+.dropdown-menu.notifications > .notifications-title {
   padding-right: 1.5rem !important;
 }
 
@@ -7671,7 +7686,8 @@ a.bg-dark:hover {
 }
 
 .pl-4,
-.px-4 {
+.px-4,
+.dropdown-menu.notifications > .notifications-title {
   padding-left: 1.5rem !important;
 }
 
@@ -9183,6 +9199,28 @@ a.text-dark:hover {
 
 .invisible {
   visibility: hidden !important;
+}
+
+.dropdown-toggle.notifications::after {
+  display: none;
+}
+
+.dropdown-toggle.notifications > .badge {
+  margin-left: -0.80em;
+}
+
+.dropdown-toggle.notifications > .bell {
+  font-size: 1.36em;
+}
+
+.dropdown-menu.notifications > .notifications-container {
+  min-width: 400px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.dropdown-menu.notifications > .notifications-container > .notification:nth-child(2n+0) {
+  background-color: #fcfcfc;
 }
 
 [v-cloak] {

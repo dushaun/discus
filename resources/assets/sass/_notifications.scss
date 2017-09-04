@@ -1,0 +1,47 @@
+.dropdown-toggle.notifications::after {
+  display: none;
+}
+
+.dropdown-toggle.notifications > .badge {
+  margin-left: -0.80em;
+}
+.dropdown-toggle.notifications > .bell {
+  font-size: 1.36em;
+}
+
+.dropdown-menu.notifications {
+  @extend .pb-0;
+}
+
+.dropdown-menu.notifications > .notifications-title {
+  @extend .px-4,
+  .pb-2,
+  .border,
+  .border-top-0,
+  .border-right-0,
+  .border-left-0;
+}
+
+.dropdown-menu.notifications > .notifications-container {
+  @extend .pt-2;
+
+  min-width: 400px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.dropdown-menu.notifications > .notifications-container > .notification {
+  @extend .d-block,
+  .border,
+  .border-top-0,
+  .border-right-0,
+  .border-left-0;
+}
+.dropdown-menu.notifications > .notifications-container > .notification:nth-child(2n+0) {
+  background-color: #fcfcfc;
+}
+.dropdown-menu.notifications > .notifications-container > .notification:not(:first-child) {
+  @extend .pt-2;
+}
+.dropdown-menu.notifications > .notifications-container > .notification:last-child {
+  @extend .border-0;
+}
