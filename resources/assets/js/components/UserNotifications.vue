@@ -8,22 +8,23 @@
                 <div class="row">
                     <div class="col">Notifications <span class="badge badge-danger" v-text="count"></span></div>
                     <div class="col text-right">
-                        <a href=""><small>Read All</small></a>
+                        <a href="" @click="markAllAsRead()"><small>Read All</small></a>
                     </div>
                 </div>
             </div>
             <div class="notifications-container">
                 <div class="notification"
-                     v-for="notification in notifications"
-                     @click="markAsRead(notification)">
+                     v-for="notification in notifications">
                     <div class="media px-4">
                         <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="Generic placeholder image">
                         <div class="media-body">
                             <!--<h5 class="mt-0">Bottom-aligned media</h5>-->
-                            <a :href="'/profiles/' + notification.data.owner">{{ notification.data.owner }}</a> {{ notification.data.action }} <a href="">{{ shortenTitle(notification) }}</a>
+                            <a :href="'/profiles/' + notification.data.owner">{{ notification.data.owner }}</a>
+                            {{ notification.data.action }}
+                            <a :href="notification.data.link" @click="markAsRead(notification)">{{ shortenTitle(notification) }}</a>
                             <p class="d-flex justify-content-between mb-0">
                                 <small class="py-1">{{ date(notification) }} - <span class="font-italic">{{ fromNow(notification) }}</span></small>
-                                <a href=""><small>Read</small></a>
+                                <a href="" @click="markAsRead(notification)"><small>Read</small></a>
                             </p>
                         </div>
                     </div>

@@ -26,7 +26,8 @@ Vue.prototype.authorise = function (handler) {
  */
 
 window.axios = require('axios');
-window.moment = require('moment');
+window.moment = require('moment-timezone');
+window.moment().tz('Europe/London');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
