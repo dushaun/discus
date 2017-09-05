@@ -36,3 +36,9 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+// Shadows
+$standard-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+.standard-box-shadow {
+  box-shadow: $standard-shadow;
+}

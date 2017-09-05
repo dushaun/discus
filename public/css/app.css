@@ -1,4 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.standard-box-shadow,
+.card,
+.dropdown-menu {
+  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+/*!
  * Bootstrap v4.0.0-beta (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
  * Copyright 2011-2017 Twitter, Inc.
@@ -6050,26 +6057,26 @@ a.bg-dark:hover {
   background-color: transparent !important;
 }
 
-.border,
-.dropdown-menu.notifications > .notifications-title,
-.dropdown-menu.notifications > .notifications-container > .notification {
+.border {
   border: 1px solid #e9ecef !important;
 }
 
 .border-0,
+.card,
+.card > .card-header,
+.card > .card-footer,
+.dropdown-menu,
+.dropdown-menu.notifications > .notifications-title,
+.dropdown-menu.notifications > .notifications-container > .notification,
 .dropdown-menu.notifications > .notifications-container > .notification:last-child {
   border: 0 !important;
 }
 
-.border-top-0,
-.dropdown-menu.notifications > .notifications-title,
-.dropdown-menu.notifications > .notifications-container > .notification {
+.border-top-0 {
   border-top: 0 !important;
 }
 
-.border-right-0,
-.dropdown-menu.notifications > .notifications-title,
-.dropdown-menu.notifications > .notifications-container > .notification {
+.border-right-0 {
   border-right: 0 !important;
 }
 
@@ -6077,9 +6084,7 @@ a.bg-dark:hover {
   border-bottom: 0 !important;
 }
 
-.border-left-0,
-.dropdown-menu.notifications > .notifications-title,
-.dropdown-menu.notifications > .notifications-container > .notification {
+.border-left-0 {
   border-left: 0 !important;
 }
 
@@ -7606,6 +7611,7 @@ a.bg-dark:hover {
 }
 
 .pb-1,
+.dropdown-menu.notifications > .notifications-container > .notification,
 .py-1 {
   padding-bottom: 0.25rem !important;
 }
@@ -9200,6 +9206,11 @@ a.text-dark:hover {
 
 .invisible {
   visibility: hidden !important;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-toggle.notifications::after {

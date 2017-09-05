@@ -9,6 +9,17 @@
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootstrap/scss/bootstrap";
 
+// Navbar
+.navbar {
+  box-shadow: $standard-shadow;
+}
+
+// Cards
+@import "cards";
+
+// Dropdowns
+@import "dropdowns";
+
 // Notifications
 @import "notifications";
 

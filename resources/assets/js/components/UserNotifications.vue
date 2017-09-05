@@ -16,7 +16,7 @@
                 <div class="notification"
                      v-for="notification in notifications">
                     <div class="media px-4">
-                        <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="Generic placeholder image">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="Generic placeholder image">
                         <div class="media-body">
                             <a :href="'/profiles/' + notification.data.owner">{{ notification.data.owner }}</a>
                             {{ notification.data.action }}
