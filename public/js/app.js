@@ -54009,7 +54009,7 @@ return jQuery;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.12.5
+ * @version 1.12.3
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -62247,7 +62247,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/Flash.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/Flash.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Flash.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -62739,7 +62739,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/Paginator.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/Paginator.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Paginator.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -62892,7 +62892,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/UserNotifications.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/UserNotifications.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] UserNotifications.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -62956,7 +62956,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62984,15 +62983,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         markAsRead: function markAsRead(notification) {
             axios.delete('/profiles/' + window.App.user.name + '/notifications/' + notification.id);
         },
+        markAllAsRead: function markAllAsRead() {
+            axios.delete('/profiles/' + window.App.user.name + '/notifications');
+        },
         shortenTitle: function shortenTitle(notification) {
             var title = notification.data.title;
             var characterCount = title.length;
             var length = 27;
             return characterCount > length ? title.substring(0, length - 3) + "..." : title;
-        },
-        date: function date(notification) {
-            var date = notification.created_at;
-            return window.moment(date).format('Do MMM YYYY, H:mm');
         },
         fromNow: function fromNow(notification) {
             var date = notification.created_at;
@@ -63056,7 +63054,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.count)
     }
-  })]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c('div', {
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "col text-right"
+  }, [_c('a', {
+    attrs: {
+      "href": ""
+    },
+    on: {
+      "click": function($event) {
+        _vm.markAllAsRead()
+      }
+    }
+  }, [_c('small', [_vm._v("Read All")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "notifications-container"
   }, _vm._l((_vm.notifications), function(notification) {
     return _c('div', {
@@ -63087,10 +63096,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(_vm.shortenTitle(notification)))]), _vm._v(" "), _c('p', {
       staticClass: "d-flex justify-content-between mb-0"
     }, [_c('small', {
-      staticClass: "py-1"
-    }, [_vm._v(_vm._s(_vm.date(notification)) + " - "), _c('span', {
-      staticClass: "font-italic"
-    }, [_vm._v(_vm._s(_vm.fromNow(notification)))])]), _vm._v(" "), _c('a', {
+      staticClass: "py-1 font-italic"
+    }, [_vm._v(_vm._s(_vm.fromNow(notification)))]), _vm._v(" "), _c('a', {
       attrs: {
         "href": ""
       },
@@ -63101,15 +63108,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('small', [_vm._v("Read")])])])])])])
   }))])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col text-right"
-  }, [_c('a', {
-    attrs: {
-      "href": ""
-    }
-  }, [_c('small', [_vm._v("Read All")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -63135,7 +63134,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/pages/Thread.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/pages/Thread.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -63197,7 +63196,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/Replies.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/Replies.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Replies.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -63298,7 +63297,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/Reply.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/Reply.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Reply.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -63457,7 +63456,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/Like.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/Like.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Like.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -63693,7 +63692,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/NewReply.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/NewReply.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] NewReply.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -63914,7 +63913,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/firmstep/Sites/Homestead/discus/resources/assets/js/components/SubscribeButton.vue"
+Component.options.__file = "/Users/dushaun/Sites/homestead/discus/resources/assets/js/components/SubscribeButton.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SubscribeButton.vue: functional components are not supported with templates, they should use render functions.")}
 

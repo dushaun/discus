@@ -36,4 +36,16 @@ class UserNotificationsController extends Controller
     {
         auth()->user()->notifications()->findOrFail($notificationId)->markAsRead();
     }
+
+    /**
+     * Mark all notifications as read
+     *
+     * @param User $user
+     */
+    public function destroyAll(User $user)
+    {
+        auth()->user()->unreadNotifications->each(function($notification) {
+            $notification->markAsRead();
+        });
+    }
 }

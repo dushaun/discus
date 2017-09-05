@@ -18,12 +18,11 @@
                     <div class="media px-4">
                         <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="Generic placeholder image">
                         <div class="media-body">
-                            <!--<h5 class="mt-0">Bottom-aligned media</h5>-->
                             <a :href="'/profiles/' + notification.data.owner">{{ notification.data.owner }}</a>
                             {{ notification.data.action }}
                             <a :href="notification.data.link" @click="markAsRead(notification)">{{ shortenTitle(notification) }}</a>
                             <p class="d-flex justify-content-between mb-0">
-                                <small class="py-1">{{ date(notification) }} - <span class="font-italic">{{ fromNow(notification) }}</span></small>
+                                <small class="py-1 font-italic">{{ fromNow(notification) }}</small>
                                 <a href="" @click="markAsRead(notification)"><small>Read</small></a>
                             </p>
                         </div>
@@ -57,15 +56,14 @@
             markAsRead(notification) {
                 axios.delete('/profiles/' + window.App.user.name + '/notifications/' + notification.id)
             },
+            markAllAsRead() {
+                axios.delete('/profiles/' + window.App.user.name + '/notifications')
+            },
             shortenTitle(notification) {
                 let title = notification.data.title;
                 let characterCount = title.length;
                 let length = 27;
                 return characterCount > length ? title.substring(0, length - 3) + "..." : title;
-            },
-            date(notification) {
-                let date = notification.created_at;
-                return window.moment(date).format('Do MMM YYYY, H:mm');
             },
             fromNow(notification) {
                 let date = notification.created_at;

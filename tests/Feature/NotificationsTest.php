@@ -60,4 +60,30 @@ class NotificationsTest extends TestCase
 
         $this->assertCount(0, $user->fresh()->unreadNotifications);
     }
+
+    /** @test */
+    public function a_user_can_mark_all_notifications_as_read()
+    {
+        $thread = create('App\Thread')->subscribe();
+        $user = auth()->user();
+
+        $thread->addReply([
+            'user_id' => create('App\User')->id,
+            'body' => 'Something interesting looks like its about to happen'
+        ]);
+        $thread->addReply([
+            'user_id' => create('App\User')->id,
+            'body' => 'Something interesting looks like it just happened'
+        ]);
+        $thread->addReply([
+            'user_id' => create('App\User')->id,
+            'body' => 'Something interesting looked like it did happen'
+        ]);
+
+        $this->assertCount(3, $user->unreadNotifications);
+
+        $this->delete("/profiles/{$user->name}/notifications");
+
+        $this->assertCount(0, $user->fresh()->unreadNotifications);
+    }
 }

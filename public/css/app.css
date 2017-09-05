@@ -9221,7 +9221,7 @@ a.text-dark:hover {
 }
 
 .dropdown-menu.notifications > .notifications-container > .notification:nth-child(2n+0) {
-  background-color: #fcfcfc;
+  background-color: #f9f9f9;
 }
 
 [v-cloak] {
