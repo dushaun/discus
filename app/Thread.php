@@ -154,4 +154,10 @@ class Thread extends Model
             ->where('user_id', '!=', $reply->user_id)
             ->each->notify($reply);
     }
+
+    public function hasUpdatesFor($user = null)
+    {
+        $key = $user->visitedThreadCacheKey($this);
+        return $this->updated_at > cache($key);
+    }
 }
