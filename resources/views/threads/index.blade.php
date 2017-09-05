@@ -33,7 +33,7 @@
                 @empty
                     <div class="card">
                         <div class="card-body">
-                            <p>There are not relevant results at this time.</p>
+                            <p class="mb-0">There are not relevant results at this time.</p>
                         </div>
                     </div>
                 @endforelse

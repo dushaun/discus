@@ -36,6 +36,9 @@
                         @endforeach
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/threads/create">New Thread</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -46,12 +49,6 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                 @else
                     <user-notifications></user-notifications>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="actionsDropdown">Actions</a>
-                        <div class="dropdown-menu" aria-labelledby="actionsDropdown">
-                            <a class="dropdown-item" href="/threads/create">New Thread</a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="userDropdown">
                             {{ Auth::user()->name }}
