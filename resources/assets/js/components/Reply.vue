@@ -35,13 +35,9 @@
         </div>
 
         <div class="card-footer" v-if="options">
-            <div class="d-flex justify-content-end" v-if="canUpdate">
-                <button class="btn btn-outline-danger btn-sm border-0 mr-2" @click="destroy">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-                <button class="btn btn-success btn-sm mr-2" @click="editing = true">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
+            <div class="d-flex justify-content-start" v-if="canUpdate">
+                <button class="btn btn-success btn-sm mr-2" @click="editing = true">Edit</button>
+                <button class="btn btn-outline-danger btn-sm border-0 mr-2" @click="destroy">Delete</button>
             </div>
         </div>
     </div>
