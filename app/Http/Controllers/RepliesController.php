@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reply;
 use App\Thread;
+use App\Utilities\Spam;
 use Illuminate\Http\Request;
 
 class RepliesController extends Controller
@@ -33,13 +34,16 @@ class RepliesController extends Controller
      *
      * @param $channel
      * @param Thread $thread
+     * @param Spam $spam
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Http\RedirectResponse
      */
-    public function store($channel, Thread $thread)
+    public function store($channel, Thread $thread, Spam $spam)
     {
         $this->validate(request(), [
             'body' => 'required'
         ]);
+
+        $spam->detect(request('body'));
 
         $reply = $thread->addReply([
             'body' => request('body'),
@@ -53,6 +57,11 @@ class RepliesController extends Controller
         return back()->with('flash', 'Your reply has been left');
     }
 
+    /**
+     * Update a reply
+     *
+     * @param Reply $reply
+     */
     public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
