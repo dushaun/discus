@@ -26235,7 +26235,9 @@ if (token) {
 window.events = new Vue();
 
 window.flash = function (message) {
-    events.$emit('flash', message);
+    var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+
+    events.$emit('flash', { message: message, level: level });
 };
 
 /**
@@ -62861,12 +62863,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['message'],
     data: function data() {
         return {
             body: '',
+            level: 'success',
             show: false
         };
     },
@@ -62877,14 +62882,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.flash(this.message);
         }
 
-        window.events.$on('flash', function (message) {
-            _this.flash(message);
+        window.events.$on('flash', function (data) {
+            _this.flash(data);
         });
     },
 
     methods: {
-        flash: function flash(message) {
-            this.body = message;
+        flash: function flash(data) {
+            this.body = data.message;
+            this.level = data.level;
             this.show = true;
 
             this.hide();
@@ -62911,11 +62917,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.show),
       expression: "show"
     }],
-    staticClass: "alert alert-success alert-flash",
+    staticClass: "alert alert-flash",
+    class: 'alert-' + _vm.level,
     attrs: {
       "role": "alert"
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.body)
     }
-  }, [_c('strong', [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")])
+  })
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -63618,14 +63628,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.body = this.original;
         },
         update: function update() {
+            var _this2 = this;
+
             axios.patch('/replies/' + this.data.id, {
                 body: this.body
+            }).then(function () {
+                _this2.editing = false;
+                _this2.original = _this2.body;
+                flash('Your reply was updated');
+            }).catch(function (error) {
+                flash(error.response.data, 'danger');
             });
-
-            this.editing = false;
-            this.original = this.body;
-
-            flash('Your reply was updated');
         },
         destroy: function destroy() {
             axios.delete('/replies/' + this.data.id);
@@ -63823,7 +63836,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })]), _vm._v(" "), _c('div', {
-    staticClass: "d-flex justify-content-end"
+    staticClass: "d-flex justify-content-start"
   }, [_c('button', {
     staticClass: "btn btn-sm btn-link",
     on: {
@@ -63954,6 +63967,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.body = '';
                 flash('Your reply has been posted.');
                 _this.$emit('created', data);
+            }).catch(function (error) {
+                flash(error.response.data, 'danger');
             });
         }
     }

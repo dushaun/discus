@@ -26,7 +26,7 @@
                     <textarea class="form-control" v-model="body"></textarea>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-start">
                     <button class="btn btn-sm btn-link" @click="cancel">Cancel</button>
                     <button class="btn btn-sm btn-primary" @click="update">Update</button>
                 </div>
@@ -82,12 +82,13 @@
             update() {
                 axios.patch('/replies/' + this.data.id, {
                     body: this.body
+                }).then(() => {
+                    this.editing = false;
+                    this.original = this.body;
+                    flash('Your reply was updated');
+                }).catch(error => {
+                    flash(error.response.data, 'danger');
                 });
-
-                this.editing = false;
-                this.original = this.body;
-
-                flash('Your reply was updated');
             },
             destroy() {
                 axios.delete('/replies/' + this.data.id);
