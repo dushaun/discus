@@ -39,6 +39,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Grab the user's last reply
+     *
+     * @return User|\Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function lastReply()
+    {
+        return $this->hasOne(Reply::class)->latest();
+    }
+
+    /**
      * A user has many tracked activities
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -48,6 +58,11 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
+    /**
+     * Create read cache key
+     *
+     * @param $thread
+     */
     public function read($thread)
     {
         cache()->forever(

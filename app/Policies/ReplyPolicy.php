@@ -10,6 +10,12 @@ class ReplyPolicy
 {
     use HandlesAuthorization;
 
+    public function create(User $user)
+    {
+        if (! $lastReply = $user->fresh()->lastReply) return true;
+        return ! $lastReply->wasJustPublished();
+    }
+
     /**
      * Determine whether a user can update their reply
      *
