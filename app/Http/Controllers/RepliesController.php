@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Reply;
 use App\Thread;
-use App\Inspections\Spam;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -35,13 +34,12 @@ class RepliesController extends Controller
      *
      * @param $channel
      * @param Thread $thread
-     * @param Spam $spam
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Http\RedirectResponse
      */
-    public function store($channel, Thread $thread, Spam $spam)
+    public function store($channel, Thread $thread)
     {
         try {
-            $this->validateReply($spam);
+            $this->validate(request(), ['body' => 'required|spamfree']);
 
             $reply = $thread->addReply([
                 'body' => request('body'),
@@ -58,15 +56,14 @@ class RepliesController extends Controller
      * Update a reply
      *
      * @param Reply $reply
-     * @param Spam $spam
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
-    public function update(Reply $reply, Spam $spam)
+    public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
 
         try {
-            $this->validateReply($spam);
+            $this->validate(request(), ['body' => 'required|spamfree']);
             $reply->update(['body' => request('body')]);
         } catch (Exception $e) {
             return response('Sorry, your reply could not be saved at this time', 422);
@@ -91,16 +88,5 @@ class RepliesController extends Controller
         }
 
         return back()->with('flash', 'Your reply was deleted');
-    }
-
-    /**
-     * @param Spam $spam
-     */
-    protected function validateReply(Spam $spam)
-    {
-        $this->validate(request(), [
-            'body' => 'required'
-        ]);
-        $spam->detect(request('body'));
     }
 }
