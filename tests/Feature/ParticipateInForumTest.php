@@ -101,31 +101,29 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function replies_that_contain_spam_may_not_be_created()
     {
-        $this->signIn();
+        $this->signIn()->withExceptionHandling();
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', [
             'body' => 'Yahoo Customer Support'
         ]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->json('post', $thread->path() . '/replies', $reply->toArray())
             ->assertStatus(422);
     }
     
     /** @test */
     public function users_may_only_reply_a_maximum_of_once_per_minute()
     {
-        $this->signIn();
+        $this->signIn()->withExceptionHandling();
 
         $thread = create('App\Thread');
-        $reply = make('App\Reply', [
-            'body' => 'A simple reply'
-        ]);
+        $reply = make('App\Reply');
 
         $this->post($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(200);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(422);
+            ->assertStatus(429);
     }
 }
