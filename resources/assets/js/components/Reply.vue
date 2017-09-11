@@ -1,45 +1,54 @@
 <template>
-    <div :id="'reply-' + id" class="card mb-3">
-        <div class="card-header">
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
-                    <a :href="'/profiles/' + data.owner.name"
-                        v-text="data.owner.name">
-                    </a> said <span v-text="ago"></span>
-                </div>
+    <div :id="'reply-' + id">
+        <div class="d-flex justify-content-between mb-1">
+            <div class="mr-auto">
+                <small>
+                    <em>
+                        <a :href="'/profiles/' + data.owner.name"
+                           v-text="data.owner.name">
+                        </a> said <span v-text="ago"></span>
+                    </em>
+                </small>
+            </div>
 
-                <div v-if="signedIn">
-                    <like :reply="data"></like>
-                </div>
+            <div v-if="signedIn">
+                <like :reply="data"></like>
+            </div>
 
-                <div class="ml-2">
-                    <button :class="classes" @click="optionsToggle">
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                    </button>
+            <div class="ml-2">
+                <button :class="classes" type="button" :id="'replyDropdown-' + id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+
+                <div class="dropdown-menu dropdown-menu-right" :aria-labelledby="'replyDropdown' + id">
+                    <div v-if="canUpdate">
+                        <a class="dropdown-item" href="" @click.prevent="editing = true">Edit</a>
+                        <a class="dropdown-item" href="" @click.prevent="destroy">Delete</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                    <a class="dropdown-item" href="">Report</a>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
-            <div v-if="editing">
-                <div class="form-group">
-                    <textarea class="form-control" v-model="body"></textarea>
-                </div>
-
-                <div class="d-flex justify-content-start">
-                    <button class="btn btn-sm btn-link" @click="cancel">Cancel</button>
-                    <button class="btn btn-sm btn-primary" @click="update">Update</button>
-                </div>
+        <div v-if="editing">
+            <div class="form-group mb-2">
+                <textarea class="form-control" v-model="body"></textarea>
             </div>
-            <div v-else v-text="body"></div>
-        </div>
 
-        <div class="card-footer" v-if="options">
-            <div class="d-flex justify-content-start" v-if="canUpdate">
-                <button class="btn btn-success btn-sm mr-2" @click="editing = true">Edit</button>
-                <button class="btn btn-outline-danger btn-sm border-0 mr-2" @click="destroy">Delete</button>
+            <div class="d-flex justify-content-start">
+                <button class="btn btn-sm btn-link" @click="cancel">Cancel</button>
+                <button class="btn btn-sm btn-primary" @click="update">Update</button>
             </div>
         </div>
+        <div v-else v-text="body"></div>
+
+        <!--<div class="card-footer" v-if="options">-->
+            <!--<div class="d-flex justify-content-start" v-if="canUpdate">-->
+                <!--<button class="btn btn-success btn-sm mr-2" @click="editing = true">Edit</button>-->
+                <!--<button class="btn btn-outline-danger btn-sm border-0 mr-2" @click="destroy">Delete</button>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 

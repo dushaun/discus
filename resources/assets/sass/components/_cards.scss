@@ -1,0 +1,24 @@
+.card,
+.card > .card-header,
+.card > .card-footer {
+  @extend .border-left-0,
+  .border-right-0,
+  .border-bottom-0;
+}
+
+.card {
+  @extend .standard-box-shadow;
+}
+.card.highlight {
+  border-top: 5px solid $brand-primary;
+}
+
+.card > .card-body {
+  @extend .border,
+  .border-top-0,
+  .border-left-0,
+  .border-right-0
+}
+.card > .card-body:last-child {
+  @extend .border-0;
+}

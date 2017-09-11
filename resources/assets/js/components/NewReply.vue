@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-3">
+    <div>
         <div v-if="signedIn">
             <div class="form-group">
                 <textarea name="body" id="body"
@@ -12,7 +12,7 @@
                         @click="addReply">Submit</button>
             </div>
         </div>
-        <p class="text-center" v-else>
+        <p class="text-center mb-0" v-else>
             Please <a href="/login">login</a> or <a href="/register">register</a> to get involved with this conversation.
         </p>
     </div>

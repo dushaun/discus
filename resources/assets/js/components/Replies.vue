@@ -1,12 +1,16 @@
 <template>
-    <div>
-        <div v-for="(reply, index) in items" :key="reply.id">
+    <div class="card mb-5">
+        <div class="card-body" v-for="(reply, index) in items" :key="reply.id">
             <reply :data="reply" @deleted="remove(index)"></reply>
         </div>
 
-        <paginator :dataSet="dataSet" @changed="fetch"></paginator>
+        <div class="card-body" v-if="dataSet.count > 29">
+            <paginator :dataSet="dataSet" @changed="fetch"></paginator>
+        </div>
 
-        <new-reply @created="add"></new-reply>
+        <div class="card-footer">
+            <new-reply @created="add"></new-reply>
+        </div>
     </div>
 </template>
 

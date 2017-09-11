@@ -1,0 +1,11 @@
+.navbar {
+  @extend .navbar-light,
+  .mb-4,
+  .border-left-0,
+  .border-right-0,
+  .border-bottom-0,
+  .bg-white,
+  .with-top-highlight;
+
+  box-shadow: $standard-shadow;
+}

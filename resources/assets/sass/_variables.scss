@@ -10,11 +10,14 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$brand-primary: #007bff;
+$brand-secondary: #868e96;
+$brand-info: #17a2b8;
+$brand-success: #28a745;
+$brand-warning: #ffc107;
+$brand-danger: #dc3545;
+$brand-light: #f8f9fa;
+$brand-dark: #343a40;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
@@ -41,4 +44,9 @@ $panel-default-heading-bg: #fff;
 $standard-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 .standard-box-shadow {
   box-shadow: $standard-shadow;
+}
+
+// Border Highlight
+.with-top-highlight {
+  border-top: 5px solid $brand-primary;
 }

@@ -63455,6 +63455,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -63541,6 +63545,15 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Like_vue__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Like_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Like_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -63777,17 +63790,14 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "card mb-3",
     attrs: {
       "id": 'reply-' + _vm.id
     }
   }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('div', {
-    staticClass: "d-flex align-items-center"
+    staticClass: "d-flex justify-content-between mb-1"
   }, [_c('div', {
     staticClass: "mr-auto"
-  }, [_c('a', {
+  }, [_c('small', [_c('em', [_c('a', {
     attrs: {
       "href": '/profiles/' + _vm.data.owner.name
     },
@@ -63798,7 +63808,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.ago)
     }
-  })]), _vm._v(" "), (_vm.signedIn) ? _c('div', [_c('like', {
+  })])])]), _vm._v(" "), (_vm.signedIn) ? _c('div', [_c('like', {
     attrs: {
       "reply": _vm.data
     }
@@ -63806,18 +63816,54 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ml-2"
   }, [_c('button', {
     class: _vm.classes,
-    on: {
-      "click": _vm.optionsToggle
+    attrs: {
+      "type": "button",
+      "id": 'replyDropdown-' + _vm.id,
+      "data-toggle": "dropdown",
+      "aria-haspopup": "true",
+      "aria-expanded": "false"
     }
   }, [_c('i', {
     staticClass: "fa fa-ellipsis-v",
     attrs: {
       "aria-hidden": "true"
     }
-  })])])])]), _vm._v(" "), _c('div', {
-    staticClass: "card-body"
-  }, [(_vm.editing) ? _c('div', [_c('div', {
-    staticClass: "form-group"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "dropdown-menu dropdown-menu-right",
+    attrs: {
+      "aria-labelledby": 'replyDropdown' + _vm.id
+    }
+  }, [(_vm.canUpdate) ? _c('div', [_c('a', {
+    staticClass: "dropdown-item",
+    attrs: {
+      "href": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.editing = true
+      }
+    }
+  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
+    staticClass: "dropdown-item",
+    attrs: {
+      "href": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.destroy($event)
+      }
+    }
+  }, [_vm._v("Delete")]), _vm._v(" "), _c('div', {
+    staticClass: "dropdown-divider"
+  })]) : _vm._e(), _vm._v(" "), _c('a', {
+    staticClass: "dropdown-item",
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("Report")])])])]), _vm._v(" "), (_vm.editing) ? _c('div', [_c('div', {
+    staticClass: "form-group mb-2"
   }, [_c('textarea', {
     directives: [{
       name: "model",
@@ -63851,23 +63897,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.body)
     }
-  })]), _vm._v(" "), (_vm.options) ? _c('div', {
-    staticClass: "card-footer"
-  }, [(_vm.canUpdate) ? _c('div', {
-    staticClass: "d-flex justify-content-start"
-  }, [_c('button', {
-    staticClass: "btn btn-success btn-sm mr-2",
-    on: {
-      "click": function($event) {
-        _vm.editing = true
-      }
-    }
-  }, [_vm._v("Edit")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-outline-danger btn-sm border-0 mr-2",
-    on: {
-      "click": _vm.destroy
-    }
-  }, [_vm._v("Delete")])]) : _vm._e()]) : _vm._e()])
+  })])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -63979,9 +64009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "mb-3"
-  }, [(_vm.signedIn) ? _c('div', [_c('div', {
+  return _c('div', [(_vm.signedIn) ? _c('div', [_c('div', {
     staticClass: "form-group"
   }, [_c('textarea', {
     directives: [{
@@ -64018,7 +64046,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.addReply
     }
   }, [_vm._v("Submit")])])]) : _c('p', {
-    staticClass: "text-center"
+    staticClass: "text-center mb-0"
   }, [_vm._v("\n        Please "), _c('a', {
     attrs: {
       "href": "/login"
@@ -64066,9 +64094,12 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._l((_vm.items), function(reply, index) {
+  return _c('div', {
+    staticClass: "card mb-5"
+  }, [_vm._l((_vm.items), function(reply, index) {
     return _c('div', {
-      key: reply.id
+      key: reply.id,
+      staticClass: "card-body"
     }, [_c('reply', {
       attrs: {
         "data": reply
@@ -64079,18 +64110,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     })], 1)
-  }), _vm._v(" "), _c('paginator', {
+  }), _vm._v(" "), (_vm.dataSet.count > 29) ? _c('div', {
+    staticClass: "card-body"
+  }, [_c('paginator', {
     attrs: {
       "dataSet": _vm.dataSet
     },
     on: {
       "changed": _vm.fetch
     }
-  }), _vm._v(" "), _c('new-reply', {
+  })], 1) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "card-footer"
+  }, [_c('new-reply', {
     on: {
       "created": _vm.add
     }
-  })], 2)
+  })], 1)], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

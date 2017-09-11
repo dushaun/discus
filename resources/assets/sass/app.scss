@@ -10,17 +10,15 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
 // Navbar
-.navbar {
-  box-shadow: $standard-shadow;
-}
+@import "components/navbar";
 
 // Cards
-@import "cards";
+@import "components/cards";
 
 // Dropdowns
-@import "dropdowns";
+@import "components/dropdowns";
 
 // Notifications
-@import "notifications";
+@import "components/notifications";
 
 [v-cloak] { display: none }

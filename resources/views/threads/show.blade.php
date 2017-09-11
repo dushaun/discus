@@ -5,28 +5,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <span class="mr-auto">
-                                    <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                                    {{ $thread->title }}
-                                </span>
-
-                                @can('delete', $thread)
-                                    <form action="{{ $thread->path() }}" method="post">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button class="btn btn-outline-danger btn-sm border-0" type="submit">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </form>
-                                @endcan
-                            </div>
-                        </div>
-
+                    <div class="card highlight mb-4">
                         <div class="card-body">
+                            <div>
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto h5">
+                                        {{ $thread->title }}
+                                    </div>
+
+                                    @can('delete', $thread)
+                                        <form action="{{ $thread->path() }}" method="post">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+
+                                            <button class="btn btn-outline-danger btn-sm border-0" type="submit">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <p class="text-muted mb-0">
+                                        <small><em>by <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a></em></small>
+                                    </p>
+                                </div>
+                            </div>
                             {{ $thread->body }}
                         </div>
                     </div>
@@ -35,7 +38,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card highlight mb-3">
                         <div class="card-body">
                             <p class="mb-2">
                                 This thread was published {{ $thread->created_at->diffForHumans() }} by
