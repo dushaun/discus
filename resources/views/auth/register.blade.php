@@ -4,9 +4,10 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Register</div>
+            <div class="card highlight">
+                {{--<div class="card-header">Register</div>--}}
                 <div class="card-body">
+                    <h5 class="mb-3">Register</h5>
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 

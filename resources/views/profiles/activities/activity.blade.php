@@ -1,17 +1,13 @@
-<div class="card mb-3">
-    <div class="card-header">
-        <div class="d-flex align-items-center">
-            <span class="mr-auto">
-                {{ $heading }}
-            </span>
+<div class="card-body">
+    <div class="d-flex justify-content-between">
+        <span class="mr-auto h5">
+            {{ $heading }}
+        </span>
 
-            <span>
-                {{ $date }}
-            </span>
-        </div>
+        <span>
+            {{ $date }}
+        </span>
     </div>
 
-    <div class="card-body">
-        {{ $body }}
-    </div>
+    {{ $body }}
 </div>

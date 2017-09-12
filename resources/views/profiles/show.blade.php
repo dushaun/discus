@@ -13,11 +13,13 @@
                 @forelse($activities as $date => $activity)
                     <h3 class="page-header mt-4 mb-4">{{ $date }}</h3>
 
+                    <div class="card highlight mb-3">
                     @foreach($activity as $record)
                         @if(view()->exists("profiles.activities.{$record->type}"))
                             @include("profiles.activities.{$record->type}", ['activity' => $record])
                         @endif
                     @endforeach
+                    </div>
                 @empty
                     <div class="card">
                         <div class="card-body">

@@ -8,7 +8,7 @@
                     <div class="card highlight mb-4">
                         <div class="card-body">
                             <div>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex justify-content-between">
                                     <div class="mr-auto h5">
                                         {{ $thread->title }}
                                     </div>
