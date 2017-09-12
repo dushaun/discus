@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Events\ThreadHasNewReply;
+use App\Events\ThreadReceivedNewReply;
 use App\Notifications\ThreadWasUpdated;
 use App\Traits\ActivityTracker;
 use Illuminate\Database\Eloquent\Model;
@@ -81,7 +82,7 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
 
-        $this->notifySubscribers($reply);
+        event(new ThreadReceivedNewReply($reply));
 
         return $reply;
     }
@@ -146,15 +147,11 @@ class Thread extends Model
     }
 
     /**
-     * @param $reply
+     * Determine if a thread has updates for the user
+     *
+     * @param null $user
+     * @return bool
      */
-    protected function notifySubscribers($reply)
-    {
-        $this->subscriptions
-            ->where('user_id', '!=', $reply->user_id)
-            ->each->notify($reply);
-    }
-
     public function hasUpdatesFor($user = null)
     {
         $key = $user->visitedThreadCacheKey($this);
