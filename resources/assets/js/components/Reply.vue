@@ -32,14 +32,16 @@
         </div>
 
         <div v-if="editing">
-            <div class="form-group mb-2">
-                <textarea class="form-control" v-model="body"></textarea>
-            </div>
+            <form @submit="update">
+                <div class="form-group mb-2">
+                    <textarea class="form-control" v-model="body" required></textarea>
+                </div>
 
-            <div class="d-flex justify-content-start">
-                <button class="btn btn-sm btn-link" @click="cancel">Cancel</button>
-                <button class="btn btn-sm btn-primary" @click="update">Update</button>
-            </div>
+                <div class="d-flex justify-content-start">
+                    <button class="btn btn-sm btn-link" @click="cancel" type="button">Cancel</button>
+                    <button class="btn btn-sm btn-primary">Update</button>
+                </div>
+            </form>
         </div>
         <div v-else v-text="body"></div>
 

@@ -63599,6 +63599,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63862,7 +63864,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": ""
     }
-  }, [_vm._v("Report")])])])]), _vm._v(" "), (_vm.editing) ? _c('div', [_c('div', {
+  }, [_vm._v("Report")])])])]), _vm._v(" "), (_vm.editing) ? _c('div', [_c('form', {
+    on: {
+      "submit": _vm.update
+    }
+  }, [_c('div', {
     staticClass: "form-group mb-2"
   }, [_c('textarea', {
     directives: [{
@@ -63872,6 +63878,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "body"
     }],
     staticClass: "form-control",
+    attrs: {
+      "required": ""
+    },
     domProps: {
       "value": (_vm.body)
     },
@@ -63885,15 +63894,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "d-flex justify-content-start"
   }, [_c('button', {
     staticClass: "btn btn-sm btn-link",
+    attrs: {
+      "type": "button"
+    },
     on: {
       "click": _vm.cancel
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-sm btn-primary",
-    on: {
-      "click": _vm.update
-    }
-  }, [_vm._v("Update")])])]) : _c('div', {
+    staticClass: "btn btn-sm btn-primary"
+  }, [_vm._v("Update")])])])]) : _c('div', {
     domProps: {
       "textContent": _vm._s(_vm.body)
     }
