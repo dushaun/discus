@@ -3,9 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class YouWereMentioned extends Notification
 {
@@ -26,7 +25,8 @@ class YouWereMentioned extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -51,16 +51,17 @@ class YouWereMentioned extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'owner' => $this->reply->owner->name,
+            'owner'  => $this->reply->owner->name,
             'action' => ' mentioned you in ',
-            'title' => $this->reply->thread->title,
-            'link' => $this->reply->path()
+            'title'  => $this->reply->thread->title,
+            'link'   => $this->reply->path(),
         ];
     }
 }

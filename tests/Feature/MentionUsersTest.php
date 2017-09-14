@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class MentionUsersTest extends TestCase
 {
@@ -22,10 +22,10 @@ class MentionUsersTest extends TestCase
         $thread = create('App\Thread');
         // And signed in user replies and mentions @NewUser
         $reply = make('App\Reply', [
-            'body' => '@JaneDoe look at this.'
+            'body' => '@JaneDoe look at this.',
         ]);
 
-        $this->json('post', $thread->path() . '/replies', $reply->toArray());
+        $this->json('post', $thread->path().'/replies', $reply->toArray());
 
         // Then the new user should be notified
         $this->assertCount(1, $jane->notifications);

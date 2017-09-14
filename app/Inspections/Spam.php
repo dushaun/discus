@@ -6,13 +6,14 @@ class Spam
 {
     protected $inspections = [
         InvalidKeywords::class,
-        RepeatedKeys::class
+        RepeatedKeys::class,
     ];
 
     /**
-     * Send body for spam detection
+     * Send body for spam detection.
      *
      * @param $body
+     *
      * @return bool
      */
     public function detect($body)

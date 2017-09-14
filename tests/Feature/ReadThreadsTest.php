@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ReadThreadsTest extends TestCase
 {
@@ -22,7 +22,7 @@ class ReadThreadsTest extends TestCase
         $this->get('/threads')
             ->assertSee($this->thread->title);
     }
-    
+
     /** @test */
     public function a_user_can_read_a_single_thread()
     {
@@ -37,7 +37,7 @@ class ReadThreadsTest extends TestCase
         $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
         $threadNotInChannel = create('App\Thread');
 
-        $this->get('/threads/' . $channel->slug)
+        $this->get('/threads/'.$channel->slug)
             ->assertSee($threadInChannel->title)
             ->assertDontSee($threadNotInChannel->title);
     }
@@ -70,7 +70,7 @@ class ReadThreadsTest extends TestCase
 
         $this->assertEquals([3, 2, 0], array_column($response, 'replies_count'));
     }
-    
+
     /** @test */
     public function a_user_can_filter_threads_by_those_that_are_unanswered()
     {
@@ -88,7 +88,7 @@ class ReadThreadsTest extends TestCase
         $thread = create('App\Thread');
         create('App\Reply', ['thread_id' => $thread->id], 30);
 
-        $response = $this->getJson($thread->path() . '/replies')->json();
+        $response = $this->getJson($thread->path().'/replies')->json();
 
         $this->assertCount(20, $response['data']);
         $this->assertEquals(30, $response['total']);

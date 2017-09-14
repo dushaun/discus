@@ -9,7 +9,7 @@ class Activity extends Model
     protected $guarded = [];
 
     /**
-     * An activity morphs to a specific subject
+     * An activity morphs to a specific subject.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */

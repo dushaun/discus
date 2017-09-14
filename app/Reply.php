@@ -29,7 +29,7 @@ class Reply extends Model
     }
 
     /**
-     * A reply belongs to a user
+     * A reply belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -39,7 +39,7 @@ class Reply extends Model
     }
 
     /**
-     * A reply belongs to a thread
+     * A reply belongs to a thread.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -49,7 +49,7 @@ class Reply extends Model
     }
 
     /**
-     * Determine if the reply was just published a moment ago
+     * Determine if the reply was just published a moment ago.
      *
      * @return mixed
      */
@@ -59,23 +59,24 @@ class Reply extends Model
     }
 
     /**
-     * Return all users mentioned in the reply
+     * Return all users mentioned in the reply.
      *
      * @return mixed
      */
     public function mentionedUsers()
     {
         preg_match_all('/\@([^\s\.]+)/', $this->body, $matches);
+
         return $matches[1];
     }
 
     /**
-     * Return the path of the reply
+     * Return the path of the reply.
      *
      * @return string
      */
     public function path()
     {
-        return $this->thread->path() . "#reply-{$this->id}";
+        return $this->thread->path()."#reply-{$this->id}";
     }
 }

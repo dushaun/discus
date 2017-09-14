@@ -3,15 +3,13 @@
 namespace Tests\Feature;
 
 use App\Activity;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     /** @test */
     public function guests_may_not_create_threads()
     {
@@ -97,13 +95,14 @@ class CreateThreadsTest extends TestCase
 
     /**
      * @param array $overrides
+     *
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
     public function publishThread($overrides = [])
     {
         $this->withExceptionHandling()->signIn();
 
-        $thread =  make('App\Thread', $overrides);
+        $thread = make('App\Thread', $overrides);
 
         return $this->post('/threads', $thread->toArray());
     }

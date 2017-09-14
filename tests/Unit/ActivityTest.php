@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Activity;
 use Carbon\Carbon;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ActivityTest extends TestCase
 {
@@ -19,10 +19,10 @@ class ActivityTest extends TestCase
         $thread = create('App\Thread');
 
         $this->assertDatabaseHas('activities', [
-            'type' => 'created_thread',
-            'user_id' => auth()->id(),
-            'trackable_id' => $thread->id,
-            'trackable_type' => 'App\Thread'
+            'type'           => 'created_thread',
+            'user_id'        => auth()->id(),
+            'trackable_id'   => $thread->id,
+            'trackable_type' => 'App\Thread',
         ]);
 
         $activity = Activity::first();

@@ -16,7 +16,7 @@ trait Likable
     }
 
     /**
-     * A reply can have many likes
+     * A reply can have many likes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -26,7 +26,7 @@ trait Likable
     }
 
     /**
-     * Allow user to like a reply
+     * Allow user to like a reply.
      *
      * @return Model
      */
@@ -40,7 +40,7 @@ trait Likable
     }
 
     /**
-     * All user to unlike a reply
+     * All user to unlike a reply.
      */
     public function unlike()
     {
@@ -51,17 +51,17 @@ trait Likable
     }
 
     /**
-     * Check if a user has liked a reply
+     * Check if a user has liked a reply.
      *
      * @return bool
      */
     public function isLiked()
     {
-        return !!$this->likes->where('user_id', auth()->id())->count();
+        return (bool) $this->likes->where('user_id', auth()->id())->count();
     }
 
     /**
-     * Return user's liked status on reply
+     * Return user's liked status on reply.
      *
      * @return bool
      */
@@ -71,7 +71,7 @@ trait Likable
     }
 
     /**
-     * Create a likes_count variable
+     * Create a likes_count variable.
      *
      * @return mixed
      */

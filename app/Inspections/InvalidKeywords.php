@@ -7,13 +7,14 @@ use Exception;
 class InvalidKeywords
 {
     protected $keywords = [
-        'yahoo customer support'
+        'yahoo customer support',
     ];
 
     /**
-     * Compare body against known spam keywords
+     * Compare body against known spam keywords.
      *
      * @param $body
+     *
      * @throws \Exception
      */
     public function detect($body)

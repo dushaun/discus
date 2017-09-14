@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
-use Illuminate\Http\Request;
 
 class ThreadSubscriptionsController extends Controller
 {
@@ -16,7 +15,7 @@ class ThreadSubscriptionsController extends Controller
     }
 
     /**
-     * Subscribe user to selected thread
+     * Subscribe user to selected thread.
      *
      * @param $channelId
      * @param Thread $thread
@@ -27,7 +26,7 @@ class ThreadSubscriptionsController extends Controller
     }
 
     /**
-     * Unsubscribe user from selected thread
+     * Unsubscribe user from selected thread.
      *
      * @param $channelId
      * @param Thread $thread

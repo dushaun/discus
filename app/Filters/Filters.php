@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 abstract class Filters
 {
-    protected $request, $builder;
+    protected $request;
+    protected $builder;
     protected $filters = [];
 
     /**
      * ThreadFilters constructor.
+     *
      * @param Request $request
      */
     public function __construct(Request $request)
@@ -20,6 +22,7 @@ abstract class Filters
 
     /**
      * @param $builder
+     *
      * @return mixed
      */
     public function apply($builder)

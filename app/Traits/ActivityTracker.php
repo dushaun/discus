@@ -7,11 +7,13 @@ use App\Activity;
 trait ActivityTracker
 {
     /**
-     * Boot method to track activity
+     * Boot method to track activity.
      */
     protected static function bootActivityTracker()
     {
-        if (auth()->guest()) return;
+        if (auth()->guest()) {
+            return;
+        }
 
         foreach (static::getActivitiesToTrack() as $event) {
             static::$event(function ($model) use ($event) {
@@ -25,7 +27,7 @@ trait ActivityTracker
     }
 
     /**
-     * Array of trackable activities
+     * Array of trackable activities.
      *
      * @return array
      */
@@ -35,7 +37,7 @@ trait ActivityTracker
     }
 
     /**
-     * A given model can have many activities
+     * A given model can have many activities.
      *
      * @return mixed
      */
@@ -45,7 +47,7 @@ trait ActivityTracker
     }
 
     /**
-     * Save a tracked activity
+     * Save a tracked activity.
      *
      * @param $event
      */
@@ -53,18 +55,19 @@ trait ActivityTracker
     {
         $this->activity()->create([
             'user_id' => auth()->id(),
-            'type' => $this->getActivityType($event),
+            'type'    => $this->getActivityType($event),
         ]);
     }
 
     /**
-     * Generate name of activity type
+     * Generate name of activity type.
      *
      * @param $event
+     *
      * @return string
      */
     protected function getActivityType($event)
     {
-        return $event . '_' . strtolower((new \ReflectionClass($this))->getShortName());
+        return $event.'_'.strtolower((new \ReflectionClass($this))->getShortName());
     }
 }

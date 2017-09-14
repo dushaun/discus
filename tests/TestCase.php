@@ -18,9 +18,10 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Sign in user
+     * Sign in user.
      *
      * @param User $user
+     *
      * @return $this
      */
     protected function signIn($user = null)
@@ -34,21 +35,29 @@ abstract class TestCase extends BaseTestCase
     protected function disableExceptionHandling()
     {
         $this->oldExceptionHandler = $this->app->make(ExceptionHandler::class);
-        $this->app->instance(ExceptionHandler::class, new TestHandler);
+        $this->app->instance(ExceptionHandler::class, new TestHandler());
     }
 
     protected function withExceptionHandling()
     {
         $this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
+
         return $this;
     }
 }
 
 class TestHandler extends Handler
 {
-    public function __construct() {}
-    public function report(\Exception $e) {}
-    public function render($request, \Exception $e) {
+    public function __construct()
+    {
+    }
+
+    public function report(\Exception $e)
+    {
+    }
+
+    public function render($request, \Exception $e)
+    {
         throw $e;
     }
 }

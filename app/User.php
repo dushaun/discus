@@ -3,8 +3,8 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user has many threads
+     * A user has many threads.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Grab the user's last reply
+     * Grab the user's last reply.
      *
      * @return User|\Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many tracked activities
+     * A user has many tracked activities.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Create read cache key
+     * Create read cache key.
      *
      * @param $thread
      */
@@ -72,18 +72,19 @@ class User extends Authenticatable
     }
 
     /**
-     * User's unique thread visited key
-     * 
+     * User's unique thread visited key.
+     *
      * @param $thread
+     *
      * @return string
      */
     public function visitedThreadCacheKey($thread)
     {
-        return sprintf("users.%s.visits.%s", $this->id, $thread->id);
+        return sprintf('users.%s.visits.%s', $this->id, $thread->id);
     }
 
     /**
-     * Route model binding expects a name
+     * Route model binding expects a name.
      *
      * @return string
      */

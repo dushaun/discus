@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 
 class UserNotificationsController extends Controller
 {
@@ -16,9 +15,10 @@ class UserNotificationsController extends Controller
     }
 
     /**
-     * Return all of user's unread notifications
+     * Return all of user's unread notifications.
      *
      * @param User $user
+     *
      * @return mixed
      */
     public function index(User $user)
@@ -27,7 +27,7 @@ class UserNotificationsController extends Controller
     }
 
     /**
-     * Mark a selected notification as read
+     * Mark a selected notification as read.
      *
      * @param User $user
      * @param $notificationId
@@ -38,13 +38,13 @@ class UserNotificationsController extends Controller
     }
 
     /**
-     * Mark all notifications as read
+     * Mark all notifications as read.
      *
      * @param User $user
      */
     public function destroyAll(User $user)
     {
-        auth()->user()->unreadNotifications->each(function($notification) {
+        auth()->user()->unreadNotifications->each(function ($notification) {
             $notification->markAsRead();
         });
     }

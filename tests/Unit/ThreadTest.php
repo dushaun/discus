@@ -3,10 +3,9 @@
 namespace Tests\Unit;
 
 use App\Notifications\ThreadWasUpdated;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ThreadTest extends TestCase
 {
@@ -39,13 +38,13 @@ class ThreadTest extends TestCase
     {
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->thread->replies);
     }
-    
+
     /** @test */
     public function a_thread_can_add_a_reply()
     {
         $this->thread->addReply([
-            'body' => 'FooBar',
-            'user_id' => 1
+            'body'    => 'FooBar',
+            'user_id' => 1,
         ]);
 
         $this->assertCount(1, $this->thread->replies);
@@ -60,8 +59,8 @@ class ThreadTest extends TestCase
             ->thread
             ->subscribe()
             ->addReply([
-                'body' => 'FooBar',
-                'user_id' => 999
+                'body'    => 'FooBar',
+                'user_id' => 999,
             ]);
 
         Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);
@@ -104,7 +103,7 @@ class ThreadTest extends TestCase
         $thread->subscribe();
         $this->assertTrue($thread->isSubscribed);
     }
-    
+
     /** @test */
     public function a_thread_can_check_if_the_authenticated_user_has_read_all_replies()
     {

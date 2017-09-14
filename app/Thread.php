@@ -2,12 +2,9 @@
 
 namespace App;
 
-use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
-use App\Notifications\ThreadWasUpdated;
 use App\Traits\ActivityTracker;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Notification;
 
 class Thread extends Model
 {
@@ -18,7 +15,7 @@ class Thread extends Model
     protected $appends = ['isSubscribed'];
 
     /**
-     * Thread Boot method
+     * Thread Boot method.
      */
     protected static function boot()
     {
@@ -31,8 +28,8 @@ class Thread extends Model
     }
 
     /**
-     * Return path of the thread
-     * 
+     * Return path of the thread.
+     *
      * @return string
      */
     public function path()
@@ -41,7 +38,7 @@ class Thread extends Model
     }
 
     /**
-     * A thread belongs to a user
+     * A thread belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -51,8 +48,8 @@ class Thread extends Model
     }
 
     /**
-     * A thread can have many replies
-     * 
+     * A thread can have many replies.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function replies()
@@ -63,7 +60,7 @@ class Thread extends Model
     }
 
     /**
-     * A thread belongs to a channel
+     * A thread belongs to a channel.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -73,9 +70,10 @@ class Thread extends Model
     }
 
     /**
-     * Add a reply to a Thread
+     * Add a reply to a Thread.
      *
      * @param $reply
+     *
      * @return Model
      */
     public function addReply($reply)
@@ -88,10 +86,11 @@ class Thread extends Model
     }
 
     /**
-     * Apply filters to query
+     * Apply filters to query.
      *
      * @param $query
      * @param $filters
+     *
      * @return mixed
      */
     public function scopeFilter($query, $filters)
@@ -100,23 +99,24 @@ class Thread extends Model
     }
 
     /**
-     * A user can subscribe to a thread
+     * A user can subscribe to a thread.
      *
      * @param null $userId
+     *
      * @return $this
      */
     public function subscribe($userId = null)
     {
         $this->subscriptions()->create([
-            'user_id' => $userId ?: auth()->id()
+            'user_id' => $userId ?: auth()->id(),
         ]);
 
         return $this;
     }
 
     /**
-     * A user can unsubscribe to a thread
-     * 
+     * A user can unsubscribe to a thread.
+     *
      * @param null $userId
      */
     public function unsubscribe($userId = null)
@@ -125,8 +125,8 @@ class Thread extends Model
     }
 
     /**
-     * A thread can have many subscriptions
-     * 
+     * A thread can have many subscriptions.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function subscriptions()
@@ -135,7 +135,7 @@ class Thread extends Model
     }
 
     /**
-     * Check if authenticated user
+     * Check if authenticated user.
      *
      * @return bool
      */
@@ -147,14 +147,16 @@ class Thread extends Model
     }
 
     /**
-     * Determine if a thread has updates for the user
+     * Determine if a thread has updates for the user.
      *
      * @param null $user
+     *
      * @return bool
      */
     public function hasUpdatesFor($user = null)
     {
         $key = $user->visitedThreadCacheKey($this);
+
         return $this->updated_at > cache($key);
     }
 }

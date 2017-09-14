@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Like;
 use App\Reply;
-use Illuminate\Http\Request;
 
 class LikesController extends Controller
 {
@@ -17,9 +16,10 @@ class LikesController extends Controller
     }
 
     /**
-     * Store a new like
+     * Store a new like.
      *
      * @param Reply $reply
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Reply $reply)

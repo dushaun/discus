@@ -7,9 +7,10 @@ use Exception;
 class RepeatedKeys
 {
     /**
-     * Detect if body has any repeated keys
+     * Detect if body has any repeated keys.
      *
      * @param $body
+     *
      * @throws Exception
      */
     public function detect($body)

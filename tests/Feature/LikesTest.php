@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class LikesTest extends TestCase
 {
@@ -24,7 +24,7 @@ class LikesTest extends TestCase
 
         $reply = create('App\Reply');
 
-        $this->post('replies/' . $reply->id . '/likes');
+        $this->post('replies/'.$reply->id.'/likes');
 
         $this->assertCount(1, $reply->likes);
     }
@@ -38,7 +38,7 @@ class LikesTest extends TestCase
 
         $reply->like();
 
-        $this->delete('replies/' . $reply->id . '/likes');
+        $this->delete('replies/'.$reply->id.'/likes');
         $this->assertCount(0, $reply->likes);
     }
 
@@ -50,8 +50,8 @@ class LikesTest extends TestCase
         $reply = create('App\Reply');
 
         try {
-            $this->post('replies/' . $reply->id . '/likes');
-            $this->post('replies/' . $reply->id . '/likes');
+            $this->post('replies/'.$reply->id.'/likes');
+            $this->post('replies/'.$reply->id.'/likes');
         } catch (\Exception $e) {
             $this->fail('Did not expect to insert the same record set twice.');
         }

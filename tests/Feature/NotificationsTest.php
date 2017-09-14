@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class NotificationsTest extends TestCase
 {
@@ -25,13 +25,13 @@ class NotificationsTest extends TestCase
 
         $thread->addReply([
             'user_id' => auth()->id(),
-            'body' => 'Something interesting looks like its about to happen'
+            'body'    => 'Something interesting looks like its about to happen',
         ]);
         $this->assertCount(0, auth()->user()->fresh()->notifications);
 
         $thread->addReply([
             'user_id' => create('App\User')->id,
-            'body' => 'Something interesting looks like its about to happen'
+            'body'    => 'Something interesting looks like its about to happen',
         ]);
         $this->assertCount(1, auth()->user()->fresh()->notifications);
     }
@@ -43,7 +43,7 @@ class NotificationsTest extends TestCase
 
         $this->assertCount(
             1,
-            $this->getJson("/profiles/" . auth()->user()->name . "/notifications")->json()
+            $this->getJson('/profiles/'.auth()->user()->name.'/notifications')->json()
         );
     }
 
@@ -56,7 +56,7 @@ class NotificationsTest extends TestCase
 
         $this->assertCount(1, $user->unreadNotifications);
 
-        $this->delete("/profiles/{$user->name}/notifications/" . $user->unreadNotifications->first()->id);
+        $this->delete("/profiles/{$user->name}/notifications/".$user->unreadNotifications->first()->id);
 
         $this->assertCount(0, $user->fresh()->unreadNotifications);
     }
@@ -69,15 +69,15 @@ class NotificationsTest extends TestCase
 
         $thread->addReply([
             'user_id' => create('App\User')->id,
-            'body' => 'Something interesting looks like its about to happen'
+            'body'    => 'Something interesting looks like its about to happen',
         ]);
         $thread->addReply([
             'user_id' => create('App\User')->id,
-            'body' => 'Something interesting looks like it just happened'
+            'body'    => 'Something interesting looks like it just happened',
         ]);
         $thread->addReply([
             'user_id' => create('App\User')->id,
-            'body' => 'Something interesting looked like it did happen'
+            'body'    => 'Something interesting looked like it did happen',
         ]);
 
         $this->assertCount(3, $user->unreadNotifications);

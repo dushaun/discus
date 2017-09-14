@@ -12,15 +12,19 @@ class ReplyPolicy
 
     public function create(User $user)
     {
-        if (! $lastReply = $user->fresh()->lastReply) return true;
-        return ! $lastReply->wasJustPublished();
+        if (!$lastReply = $user->fresh()->lastReply) {
+            return true;
+        }
+
+        return !$lastReply->wasJustPublished();
     }
 
     /**
-     * Determine whether a user can update their reply
+     * Determine whether a user can update their reply.
      *
-     * @param User $user
+     * @param User  $user
      * @param Reply $reply
+     *
      * @return bool
      */
     public function update(User $user, Reply $reply)
@@ -29,10 +33,11 @@ class ReplyPolicy
     }
 
     /**
-     * Determine whether a user can delete their reply
+     * Determine whether a user can delete their reply.
      *
-     * @param User $user
+     * @param User  $user
      * @param Reply $reply
+     *
      * @return bool
      */
     public function delete(User $user, Reply $reply)

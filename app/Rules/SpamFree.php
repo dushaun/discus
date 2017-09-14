@@ -8,16 +8,17 @@ use Exception;
 class SpamFree
 {
     /**
-     * Check if value isn't spam
+     * Check if value isn't spam.
      *
      * @param $attribute
      * @param $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
         try {
-            return ! resolve(Spam::class)->detect($value);
+            return !resolve(Spam::class)->detect($value);
         } catch (Exception $e) {
             return false;
         }

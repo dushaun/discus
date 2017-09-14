@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Inspections\Spam;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class SpamTest extends TestCase
 {

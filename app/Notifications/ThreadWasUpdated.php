@@ -3,9 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ThreadWasUpdated extends Notification
 {
@@ -29,7 +28,8 @@ class ThreadWasUpdated extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -40,7 +40,8 @@ class ThreadWasUpdated extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
 //    public function toMail($notifiable)
@@ -54,17 +55,18 @@ class ThreadWasUpdated extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'owner' => $this->reply->owner->name,
-            'action' => ' replied to ',
-            'title' => $this->thread->title,
-            'message' => $this->reply->owner->name . ' replied to ' . $this->thread->title,
-            'link' => $this->reply->path()
+            'owner'   => $this->reply->owner->name,
+            'action'  => ' replied to ',
+            'title'   => $this->thread->title,
+            'message' => $this->reply->owner->name.' replied to '.$this->thread->title,
+            'link'    => $this->reply->path(),
         ];
     }
 }

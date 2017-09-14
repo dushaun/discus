@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     /** @test */
     public function unauthenticated_users_may_not_add_replies()
     {
@@ -25,7 +25,7 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Thread');
 
         $reply = make('App\Reply');
-        $this->post($thread->path() . '/replies', $reply->toArray());
+        $this->post($thread->path().'/replies', $reply->toArray());
 
         $this->assertDatabaseHas('replies', ['body' => $reply->body]);
         $this->assertEquals(1, $thread->fresh()->replies_count);
@@ -39,10 +39,10 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->post($thread->path().'/replies', $reply->toArray())
             ->assertSessionHasErrors('body');
     }
-    
+
     /** @test */
     public function unauthorized_users_cannot_delete_replies()
     {
@@ -105,13 +105,13 @@ class ParticipateInForumTest extends TestCase
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', [
-            'body' => 'Yahoo Customer Support'
+            'body' => 'Yahoo Customer Support',
         ]);
 
-        $this->json('post', $thread->path() . '/replies', $reply->toArray())
+        $this->json('post', $thread->path().'/replies', $reply->toArray())
             ->assertStatus(422);
     }
-    
+
     /** @test */
     public function users_may_only_reply_a_maximum_of_once_per_minute()
     {
@@ -120,10 +120,10 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Thread');
         $reply = make('App\Reply');
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->post($thread->path().'/replies', $reply->toArray())
             ->assertStatus(200);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->post($thread->path().'/replies', $reply->toArray())
             ->assertStatus(429);
     }
 }

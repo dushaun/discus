@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Channel extends Model
 {
     /**
-     * Return slug instead of id
+     * Return slug instead of id.
      *
      * @return string
      */
@@ -17,7 +17,7 @@ class Channel extends Model
     }
 
     /**
-     * A channel has many threads
+     * A channel has many threads.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

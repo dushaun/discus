@@ -3,9 +3,8 @@
 namespace Tests\Unit;
 
 use Carbon\Carbon;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
@@ -32,7 +31,7 @@ class ReplyTest extends TestCase
     public function it_can_detect_all_mentioned_users_in_the_body()
     {
         $reply = create('App\Reply', [
-            'body' => '@JaneDoe wants to talk to @JohnDoe'
+            'body' => '@JaneDoe wants to talk to @JohnDoe',
         ]);
 
         $this->assertEquals(['JaneDoe', 'JohnDoe'], $reply->mentionedUsers());
